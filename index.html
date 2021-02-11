@@ -53,6 +53,7 @@
       <!-- Form-list of movie genres-->
 
       <form class="movie-genres-container">
+        <h5>Search by:</h5>
         <ul>
           <li class="genre" data-text-filter="action">
             <input type="checkbox" name="genre" id="action" value="action" />
@@ -80,8 +81,8 @@
           </li>
 
           <li class="byTitle" data-text-filter="search-by-title">
-            <input type="checkbox" name="other" id="search-by-title" value="byTitle" />
-            <label for="search-by-title">SEARCH BY TITLE</label>
+            <input type="checkbox" name="byTitle" id="search-by-title" value="byTitle" />
+            <label for="search-by-title">MOVIE TITLE</label>
           </li>
         </ul>
       </form>
@@ -96,8 +97,7 @@
 
       <div>
         <p>Most recent searches:</p>
-          <div id="recents" style="color: white; text-align: center"> </div>
-        
+          <div id="recents" style="color: white; text-align: center"></div>        
       </div>
     </main>
     <div id = "white_box"></div>

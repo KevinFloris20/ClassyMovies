@@ -79,10 +79,18 @@ ul label {
   font-size: 20px;
 }
 
+
 /* Styles the movie's name and year, and plot */
 h3,
 p {
   color: white;
+}
+h5{
+  color:#dbb21c;
+  font-size: medium;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 30px;
 }
 
 /* Styles only the movie's plot */

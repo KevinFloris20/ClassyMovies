@@ -6,29 +6,38 @@ var year;
 var poster;
 var plot;
 var localstore = "";
-var html2 = '';
+var html2 = "";
 var store = [];
-var x = 0;
 
 var queryURL = `https://www.omdbapi.com/?t=${movie}&apikey=8e35679c`;
 
+$("#search-by-title").prop("checked", false);
+$("#action").prop("checked", false);
+$("#comedy").prop("checked", false);
+$("#family").prop("checked", false);
+$("#romance").prop("checked", false);
+$("#drama").prop("checked", false);
 
-// Var genreContainer stores the form* element in html line 59 with an id of movie-genres-container
+// Var genreContainer stores the form* element from html
 var genreContainer = $(".movie-genres-container");
 var dsm = $(".dmd");
 
 // Event listener targets the entire form* element
 genreContainer.click(function (event) {
-  event.preventDefault();
   // The element that I click on will be save in var element
   var element = event.target;
-  
-  // IF the element I click on matches and element with an id of search-by-title
+
+  // IF the element I click on matches an element with an id of search-by-title
   // then it is true.
   if (element.matches("#search-by-title") === true) {
-    x = 6;
+    $("#search-by-title").prop("checked", true);
+    $("#action").prop("checked", false);
+    $("#comedy").prop("checked", false);
+    $("#family").prop("checked", false);
+    $("#romance").prop("checked", false);
+    $("#drama").prop("checked", false);
+
     $("#searchdiv").removeClass("hide");
-    console.log("I selected Search by Title");
 
     // If true, then a movieInput block and a search button will be displayed on the page
     var html = `<input id="movieInput" type="text" placeholder="Movie Title"/> 
@@ -40,12 +49,16 @@ genreContainer.click(function (event) {
   }
 
   // IF I click on any of the genres with matching id's
-  // then that element will be true and a message will shown in the console.
+  // then that element will be true
   else if (element.matches("#action") === true) {
-    x = 1;
+    $("#search-by-title").prop("checked", false);
+    $("#action").prop("checked", true);
+    $("#comedy").prop("checked", false);
+    $("#family").prop("checked", false);
+    $("#romance").prop("checked", false);
+    $("#drama").prop("checked", false);
     $("#searchdiv").addClass("hide");
-    console.log("I selected action genre");
-    
+
     // Action movies array
     var topAction = [
       "the terminator",
@@ -63,13 +76,19 @@ genreContainer.click(function (event) {
 
     for (var i = 0; i < topAction.length; i++) {
       movie = topAction[i];
-      console.log(movie);
+      //console.log(movie);
       getmovieInfo(movie);
     }
   } else if (element.matches("#comedy") === true) {
-    x = 2;
+    $("#search-by-title").prop("checked", false);
+    $("#action").prop("checked", false);
+    $("#comedy").prop("checked", true);
+    $("#family").prop("checked", false);
+    $("#romance").prop("checked", false);
+    $("#drama").prop("checked", false);
+
     $("#searchdiv").addClass("hide");
-    console.log("I selected comedy genre");
+    
     // Comedy movies array
     var topComedy = [
       "dumb and dumber",
@@ -86,13 +105,18 @@ genreContainer.click(function (event) {
 
     for (var i = 0; i < topComedy.length; i++) {
       movie = topComedy[i];
-      console.log(movie);
+      //console.log(movie);
       getmovieInfo(movie);
     }
   } else if (element.matches("#family") === true) {
-    x = 3;
+    $("#search-by-title").prop("checked", false);
+    $("#action").prop("checked", false);
+    $("#comedy").prop("checked", false);
+    $("#family").prop("checked", true);
+    $("#romance").prop("checked", false);
+    $("#drama").prop("checked", false);
+
     $("#searchdiv").addClass("hide");
-    console.log("I selected family genre");
 
     var topFamily = [
       "jumanji",
@@ -110,13 +134,18 @@ genreContainer.click(function (event) {
 
     for (var i = 0; i < topFamily.length; i++) {
       movie = topFamily[i];
-      console.log(movie);
+      //console.log(movie);
       getmovieInfo(movie);
     }
   } else if (element.matches("#romance") === true) {
-    x = 4;
+    $("#search-by-title").prop("checked", false);
+    $("#action").prop("checked", false);
+    $("#comedy").prop("checked", false);
+    $("#family").prop("checked", false);
+    $("#romance").prop("checked", true);
+    $("#drama").prop("checked", false);
+
     $("#searchdiv").addClass("hide");
-    console.log("I selected romance genre");
 
     var topRomance = [
       "titanic",
@@ -134,13 +163,18 @@ genreContainer.click(function (event) {
 
     for (var i = 0; i < topRomance.length; i++) {
       movie = topRomance[i];
-      console.log(movie);
+      //console.log(movie);
       getmovieInfo(movie);
     }
   } else if (element.matches("#drama") === true) {
-    x = 5;
+    $("#search-by-title").prop("checked", false);
+    $("#action").prop("checked", false);
+    $("#comedy").prop("checked", false);
+    $("#family").prop("checked", false);
+    $("#romance").prop("checked", false);
+    $("#drama").prop("checked", true);
+
     $("#searchdiv").addClass("hide");
-    console.log("I selected drama genre");
 
     var topDrama = [
       "edward scissorhands",
@@ -158,7 +192,7 @@ genreContainer.click(function (event) {
 
     for (var i = 0; i < topDrama.length; i++) {
       movie = topDrama[i];
-      console.log(movie);
+      //console.log(movie);
       getmovieInfo(movie);
     }
   }
@@ -170,83 +204,7 @@ genreContainer.click(function (event) {
   }
 });
 
-// //----------make boxes checked------------------------
-{// var optionb = [
-//   document.getElementById("action"),
-//   document.getElementById("comedy"),
-//   document.getElementById("family"),
-//   document.getElementById("romance"),
-//   document.getElementById("drama"),
-//   document.getElementById("search-by-title")
-// ];
-// function one(){
-//   optionb[0].checked = true;
-//   optionb[1].checked = false;
-//   optionb[2].checked = false;
-//   optionb[3].checked = false;
-//   optionb[4].checked = false;
-//   optionb[5].checked = false;
-// }
-// function two(){
-//   optionb[1].checked = true;
-//   optionb[0].checked = false;
-//   optionb[2].checked = false;
-//   optionb[3].checked = false;
-//   optionb[4].checked = false;
-//   optionb[5].checked = false;
-// }
-// function three(){
-//   optionb[2].checked = true;
-//   optionb[1].checked = false;
-//   optionb[0].checked = false;
-//   optionb[3].checked = false;
-//   optionb[4].checked = false;
-//   optionb[5].checked = false;
-// }
-// function four(){
-//   optionb[3].checked = true;
-//   optionb[1].checked = false;
-//   optionb[2].checked = false;
-//   optionb[0].checked = false;
-//   optionb[4].checked = false;
-//   optionb[5].checked = false;
-// }
-// function five(){
-//   optionb[4].checked = true;
-//   optionb[1].checked = false;
-//   optionb[2].checked = false;
-//   optionb[3].checked = false;
-//   optionb[0].checked = false;
-//   optionb[5].checked = false;
-// }
-// function six(){
-//   optionb[5].checked = true;
-//   optionb[1].checked = false;
-//   optionb[2].checked = false;
-//   optionb[3].checked = false;
-//   optionb[4].checked = false;
-//   optionb[0].checked = false;
-// }
-//   if(x == 1){
-//     one();
 
-//   }
-//   else if(x == 2){
-//     two();
-//   }
-//   else if(x == 3){
-//     three();
-//   }
-//   else if(x == 4){
-//     four();
-//   }
-//   else if(x == 5){
-//     five();
-//   }
-//   else if(x == 6){
-//     six();
-//   }
-}
 //-------------------------------------------------make the pictures clickable-------------------
 dsm.click(function(event){
   var element = event.target;
@@ -258,9 +216,8 @@ dsm.click(function(event){
 function getmovie() {
   // The name (aka value) of the movie that the user types into the search block will be stored in var movie
   movie = document.getElementById("movieInput").value;
-  // Var movie will be updated as the user searches for other movies
-  // queryURL = `https://www.omdbapi.com/?t=${movie}&apikey=8e35679c`;
-  if(!(movie == undefined)){
+  
+  if (!(movie == undefined)) {
     localstor(movie);
   } 
   $("#display-movie-data").empty();
@@ -274,24 +231,23 @@ function getmovieInfo(movieInput) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    //console.log(response);
     title = response.Title;
-    console.log(title);
+    //console.log(title);
 
     year = response.Year;
-    console.log(year);
+    //console.log(year);
 
     poster = response.Poster;
-    console.log(poster);
+    //console.log(poster);
 
     plot = response.Plot;
-    console.log(plot);
+    //console.log(plot);
 
-    render(title,year,poster,plot);
+    render(title, year, poster, plot);
   });
 }
 
-function render(title,year,poster,plot) {
+function render(title, year, poster, plot) {
   // The movie's data will be appended to different elements and saved into var html
   var wrapper = document.createElement("div");
   wrapper.classList.add("col-sm-4");
@@ -301,7 +257,7 @@ function render(title,year,poster,plot) {
   <p>${plot}</p>`;
   wrapper.innerHTML = html;
 
-  // Var html will be displayed in the element with an id of display-movie-data. Line 103 of html.
+  // Var html will be displayed in the element with an id of display-movie-data
   document.getElementById("display-movie-data").append(wrapper);
 }
 getmovieInfo(movie);
@@ -315,37 +271,30 @@ $("#play-button").on("click", function () {
 
 // ----------- GET MOVIE TRAILER -----------------------
 
-function movieTrailer(movieInput){
-
+function movieTrailer(movieInput) {
   var apiKey = "c7d300bef019d500e53ccb41d5680608";
-  
+
   var trailerURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieInput}`;
-  
+
   $.ajax({
     url: trailerURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
     var movieId = response.results[0].id;
-    console.log(movieId);
-  
+
     $.ajax({
       url: `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
-      console.log(response.results[0].key);
       var trailerKey = response.results[0].key;
       console.log(`https://www.youtube.com/watch?v=${trailerKey}`);
       window.location = `https://www.youtube.com/watch?v=${trailerKey}`;
     });
   });
-  }
+}
 
-
-// LocalStorage. When the page loads, the most recent search movies must be displayed
-
-{//-----------------------------------------------getmovieinfo2 function is for most recent searches only!!!!
+{
+  //--------------------------- getmovieinfo2 function is for most recent searches only!!!!
   function getmovieInfo2(movieInput) {
     queryURL = `https://www.omdbapi.com/?t=${movieInput}&apikey=8e35679c`;
     // ajax request will get us the movie's title, year, poster, and plot.
@@ -355,22 +304,22 @@ function movieTrailer(movieInput){
     }).then(function (response) {
       //console.log(response);
       title = response.Title;
-      console.log('2',title);
-  
+      //console.log("2", title);
+
       year = response.Year;
-      console.log('2',year);
-  
+      //console.log("2", year);
+
       poster = response.Poster;
-      console.log('2',poster);
-  
+      //console.log("2", poster);
+
       plot = response.Plot;
-      console.log('2',plot);
-  
-      render2(title,year,poster,plot);
+      //console.log("2", plot);
+
+      render2(title, year, poster, plot);
     });
   }
-  
-  function render2(title,year,poster,plot) {
+
+  function render2(title, year, poster, plot) {
     // The movie's data will be appended to different elements and saved into var html
     var wrapper = document.createElement("div");
     wrapper.classList.add("col-sm-4");
@@ -379,30 +328,25 @@ function movieTrailer(movieInput){
     <img src = "${poster}" style="width:200px;height:300px;"> 
     <p>${plot}</p>`;
     wrapper.innerHTML = html;
-  
-    // Var html will be displayed in the element with an id of display-movie-data. Line 103 of html.
+
+    // Var html will be displayed in the element with an id of display-movie-data
     document.getElementById("recents").append(wrapper);
   }
-  
+
   getmovieInfo2(movie);
-  }//----------------------------------------------------------------------------------------------------------
-  
-  function localstor(input){
-    var res = [];
-    if(!(res.includes(input))){
-      html2 = "";
-      input = input + ","// store.push(input);
-      localStorage.setItem("input", input);
-      res = localStorage.getItem("input").split(",");
-      console.log(res);
-      for(var i = 0; i < res.length - 1; i++){
-          getmovieInfo2(res[i]);
-      }
-    } 
-    
- 
-    // console.log(html2);
-    // document.getElementById("recents").innerHTML= html2;
-    //
+
+} //------------------------- Local Storage --------------------------------------
+
+function localstor(input) {
+  var res = [];
+  if (!res.includes(input)) {
+    html2 = "";
+    input = input + ","; // store.push(input);
+    localStorage.setItem("input", input);
+    res = localStorage.getItem("input").split(",");
+    console.log(res);
+    for (var i = 0; i < res.length - 1; i++) {
+      getmovieInfo2(res[i]);
+    }
   }
-  
+}
