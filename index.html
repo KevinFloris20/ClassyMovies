@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <title>Classy Movies App</title>
+</head>
+
+<body>
+  <!-- ==== WELCOME CONTAINER PAGE STARTS HERE ==== -->
+  <div class="welcome-container">
+    <h3 class="welcomeHtag">WELCOME TO</h3>
+    <h1 class="welcomeHtag">CLASSY MOVIES</h1>
+
+    <p class="welcome-message">
+      If you're a lover of the good old classic movies, then this is the
+      website you've been looking for! <br />
+      To begin, simply click on the button below. ENJOY!
+    </p>
+
+    <!-- Play button -->
+    <button id="play-button" type="button" class="btn btn-primary btn-lg">
+      <i class="fa fa-play" style="font-size: 50px; color: black"></i>
+    </button>
+
+    <!-- Forrest Gump quote -->
+    <p class="quote">
+      “Life is like a box of chocolates. You never know what you're gonna
+      get.”
+    </p>
+    <p class="forrestGump">- Forrest Gump.</p>
+  </div>
+
+    <!-- ==== MOVIE SEARCH PAGE STARTS HERE ==== -->
+
+    <main id="main-page" class="hide">
+      <!-- Header -->
+      <div class="logo-container">
+        <a class="logo no-snap">
+          <h1 class="logo-img">CLASSY Movies</h1>
+        </a>
+      </div>
+
+      <!-- Form-list of movie genres-->
+
+      <form class="movie-genres-container">
+        <ul>
+          <li class="genre" data-text-filter="action">
+            <input type="checkbox" name="genre" id="action" value="action" />
+            <label for="action">ACTION</label>
+          </li>
+
+          <li class="genre" data-text-filter="comedy">
+            <input type="checkbox" name="genre" id="comedy" value="comedy" />
+            <label for="comedy">COMEDY</label>
+          </li>
+
+          <li class="genre" data-text-filter="family">
+            <input type="checkbox" name="genre" id="family" value="family" />
+            <label for="family">FAMILY</label>
+          </li>
+
+          <li class="genre" data-text-filter="romance">
+            <input type="checkbox" name="genre" id="romance" value="romance" />
+            <label for="romance">ROMANCE</label>
+          </li>
+
+          <li class="genre" data-text-filter="drama">
+            <input type="checkbox" name="genre" id="drama" value="drama" />
+            <label for="drama">DRAMA</label>
+          </li>
+
+          <li class="byTitle" data-text-filter="search-by-title">
+            <input type="checkbox" name="other" id="search-by-title" value="byTitle" />
+            <label for="search-by-title">SEARCH BY TITLE</label>
+          </li>
+        </ul>
+      </form>
+
+      <!-- Search movie button will be appended to this div -->
+      <div id="searchdiv"></div>
+
+      <!-- Data of searched for movie will be appended here -->
+      <div class="col-sm-12">
+        <div style="text-align: center" id="display-movie-data" class = "dmd"></div>
+      </div>
+
+      <div>
+        <p>Most recent searches:</p>
+          <div id="recents" style="color: white; text-align: center"> </div>
+        
+      </div>
+    </main>
+    <div id = "white_box"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/script.js"></script>
+  </body>
+
+</html>
