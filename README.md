@@ -18,7 +18,6 @@ As a user, who loves good old classy movies, I want the application to:
 
 * [Motivation](#motivation)
 * [Description](#description)
-* [Requirements](#requirements)
 * [Screenshots](#screenshots)
 * [Link to Page](#link-to-page)
 * [Tools](#tools)

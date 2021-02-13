@@ -1,5 +1,4 @@
 //-------------------------------------vArs----------------------
-
 var movie = "titanic"; //titanic is set as a default movie that will display on page
 var title;
 var year;
